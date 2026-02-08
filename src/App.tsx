@@ -18,25 +18,22 @@ function App() {
   // }, []);
 
   return (
-    <div className="bg-page text-primary font-sans min-h-screen md:flex">
-      <PageLoader /> {/* Loading bar component */}
+     <div className="bg-page text-primary font-sans h-screen flex overflow-hidden">
+      <PageLoader />
+
+      {/* Sidebar — NOT scrollable */}
       <Sidebar />
-      <main className="relative flex-1 w-full md:w-[70%] md:ml-[30%] h-screen overflow-y-auto bg-page">
+
+      {/* Main — scrollable */}
+      <main className="flex-1 h-screen bg-page overflow-y-auto">
         <Switch>
-          <Route path="/">
-            <HomeSection />
-          </Route>
-          <Route path="/about">
-            <AboutMe />
-          </Route>
-          <Route path="/resume">
-            <Resume />
-          </Route>
-          <Route path="/contact">
-            <ContactPage />
-          </Route>
+          <Route path="/" component={HomeSection} />
+          <Route path="/about" component={AboutMe} />
+          <Route path="/resume" component={Resume} />
+          <Route path="/contact" component={ContactPage} />
+
           <Route>
-            <div className="h-screen flex items-center justify-center">
+            <div className="h-full flex items-center justify-center">
               <h1 className="text-4xl font-bold">404 - Page Not Found</h1>
             </div>
           </Route>

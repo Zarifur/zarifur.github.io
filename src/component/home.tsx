@@ -6,10 +6,10 @@ const HomeSection = () => {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="
+      className=" max-w-6xl mx-auto
         flex flex-col items-center justify-center
         min-h-screen w-full text-center p-8
-        ml-0 md:ml-64
+      
         bg-page
       "
     >

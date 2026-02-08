@@ -48,12 +48,20 @@ const Sidebar = () => {
   return (
     <>
       {/* DESKTOP SIDEBAR */}
-      <motion.aside
-        initial="hidden"
-        animate="show"
-        variants={sidebarVariants}
-        className="hidden md:flex h-screen w-[30%] bg-surface text-primary z-50"
-      >
+<motion.aside
+  initial="hidden"
+  animate="show"
+  variants={sidebarVariants}
+  className="
+    hidden lg:flex
+    h-screen
+    w-[320px] xl:w-[360px]
+    bg-surface
+    text-primary
+    z-40
+    shrink-0
+  "
+>
         <div className="flex w-full">
           {/* ICON NAV */}
           <nav className="flex flex-col items-center justify-between w-20 bg-surfaceMuted py-6 space-y-4 h-full">
