@@ -1,238 +1,236 @@
 import { Link, useLocation } from "wouter";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
 import SchoolIcon from "@mui/icons-material/School";
 import EmailIcon from "@mui/icons-material/Email";
-import { useState } from "react";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import SettingsIcon from "@mui/icons-material/Settings";
+import { useState } from "react";
+import { useTheme } from "../../context/useTheme";
 
 const navLinks = [
   { href: "/", label: "Home", icon: <HomeIcon /> },
   { href: "/about", label: "About Me", icon: <PersonIcon /> },
   { href: "/resume", label: "Resume", icon: <SchoolIcon /> },
-  // { href: "/portfolio", label: "Portfolio", icon: <WorkIcon /> },
-  // { href: "/blog", label: "Blog", icon: <MenuBookIcon /> },
   { href: "/contact", label: "Contact", icon: <EmailIcon /> },
 ];
 
 const Sidebar = () => {
   const [location] = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const [showThemeMenu, setShowThemeMenu] = useState(false);
+  const { theme, setTheme } = useTheme();
+  const isActive = (href: string) => location === href;
+
+  const mobileVariants: Variants = {
+    hidden: { x: "100%" },
+    show: {
+      x: 0,
+      transition: { type: "spring", stiffness: 90 },
+    },
+    exit: { x: "100%" },
+  };
+
+  const sidebarVariants: Variants = {
+    hidden: { x: -80, opacity: 0 },
+    show: {
+      x: 0,
+      opacity: 1,
+      transition: { duration: 0.5 },
+    },
+  };
 
   return (
     <>
-      <aside className="hidden md:flex h-screen w-[30%] bg-[#222222] z-50  overflow-hidden">
-        <div className="flex flex-row h-full w-full">
-          {/* Navigation Column */}
-          <nav className="flex flex-col items-center w-20 bg-[#333] py-6 space-y-4">
-            {navLinks.map(({ href, label, icon }) => {
-              const isActive = location === href;
-              return (
-                <Link
-                  key={href}
-                  href={href}
-                  className={`flex flex-col items-center justify-center w-full py-4 group transition ${
-                    isActive
-                      ? "text-cyan-500"
-                      : "text-gray-400 hover:text-cyan-400"
-                  }`}
-                >
-                  <div className="mb-1">{icon}</div>
-                  <span className="text-xs font-semibold">{label}</span>
-                </Link>
-              );
-            })}
-          </nav>
-
-          {/* Profile Info Column */}
-          <div className="flex flex-col items-center justify-between h-screen w-full bg-[#222222] text-center px-6 py-8">
-            {/* Top content: profile */}
-            <div className="flex flex-col items-center pt-8">
-              <img
-                //src="/img/Zarif.jpg"
-                src={`${import.meta.env.BASE_URL}img/Zarif.jpg`}
-                alt="Profile"
-                className="w-60 h-60 rounded-full object-cover border-4 border-white mb-6"
-              />
-              <h1 className="text-4xl font-bold text-white mb-2 pt-6">
-                Zarif Amir Sanad
-              </h1>
-              <h2 className="text-lg text-gray-400 mb-6 pt-2">
-                Full-stack-Developer
-              </h2>
-
-              {/* Social icons */}
-              <div className="flex space-x-6 pt-4 pb-10 gap-2">
-                <a
-                  href="https://www.linkedin.com/in/zarif-amir/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <LinkedInIcon
-                    className="text-gray-300 hover:text-[#0a66c2]"
-                    fontSize="large"
-                  />
-                </a>
-                <a
-                  href="https://github.com/Zarifur"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <GitHubIcon
-                    className="text-gray-300 hover:text-black"
-                    fontSize="large"
-                  />
-                </a>
-                <a href="#" target="_blank" rel="noreferrer">
-                  <WhatsAppIcon
-                    className="text-gray-300 hover:text-green-600"
-                    fontSize="large"
-                  />
-                </a>
-              </div>
-
-              {/* Download CV button */}
-              <a
-                //href="/files/Zarif_Amir_Sanad.pdf"
-                href={`${import.meta.env.BASE_URL}files/Zarif_Amir_Sanad.pdf`}
-                download="Zarif_Amir_Sanad_CV.pdf"
-                className="group inline-flex items-center justify-center gap-2 px-8 py-3 border-2 border-white text-white rounded-full transition-all duration-200 ease-out hover:bg-primary-500 hover:border-cyan-400 hover:text-cyan-400 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-primary-300 font-semibold"
-                aria-label="Download Zarif Amir Sanad's CV"
-              >
-                Download CV
-                <svg
-                  className="w-5 h-5 transform transition-transform duration-200 group-hover:translate-y-1 group-hover:text-cyan-400"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M12 5v14m0 0l-5-5m5 5l5-5"
-                  />
-                </svg>
-              </a>
+      {/* DESKTOP SIDEBAR */}
+      <motion.aside
+        initial="hidden"
+        animate="show"
+        variants={sidebarVariants}
+        className="hidden md:flex h-screen w-[30%] bg-surface text-primary z-50"
+      >
+        <div className="flex w-full">
+          {/* ICON NAV */}
+          <nav className="flex flex-col items-center justify-between w-20 bg-surfaceMuted py-6 space-y-4 h-full">
+            {/* Navigation Links */}
+            <div className="flex flex-col items-center space-y-4">
+              {navLinks.map(({ href, label, icon }) => {
+                const isActive = location === href;
+                return (
+                  <Link key={href} href={href}>
+                    <motion.div
+                      whileHover={{ scale: 1.15 }}
+                      whileTap={{ scale: 0.95 }}
+                      className={`flex flex-col items-center justify-center py-3 w-full ${
+                        isActive ? "text-accent" : "text-secondary"
+                      }`}
+                    >
+                      {icon}
+                      <span className="text-xs font-semibold">{label}</span>
+                    </motion.div>
+                  </Link>
+                );
+              })}
             </div>
 
-            {/* Footer */}
-            <footer className="text-sm text-gray-400 mt-8">
+            {/* THEME TOGGLE - Bottom Left */}
+            <div className="relative">
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.85 }}
+                onMouseEnter={() => setShowThemeMenu(true)}
+                onMouseLeave={() => setShowThemeMenu(false)}
+                className="w-10 h-10 rounded-full flex items-center justify-center border border-border hover:border-accent transition"
+              >
+                <SettingsIcon />
+              </motion.button>
+
+              {/* Theme Menu */}
+              <AnimatePresence>
+                {showThemeMenu && (
+                  <motion.div
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -10 }}
+                    transition={{ duration: 0.2 }}
+                    onMouseEnter={() => setShowThemeMenu(true)}
+                    onMouseLeave={() => setShowThemeMenu(false)}
+                    className="absolute bottom-12 left-0 bg-surface border border-border rounded-lg shadow-lg overflow-hidden"
+                  >
+                    {(["light", "dark", "system"] as const).map((t) => (
+                      <motion.button
+                        key={t}
+                        whileHover={{
+                          backgroundColor: "rgba(34, 211, 238, 0.1)",
+                        }}
+                        onClick={() => {
+                          setTheme(t);
+                          setShowThemeMenu(false);
+                        }}
+                        className={`w-full px-4 py-2 text-left text-sm capitalize border-b border-border last:border-b-0 transition ${
+                          theme === t
+                            ? "text-accent font-semibold"
+                            : "text-secondary"
+                        }`}
+                      >
+                        {t}
+                      </motion.button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </nav>
+
+          {/* PROFILE COLUMN */}
+          <div className="flex flex-col justify-between h-full w-full px-6 py-10 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="flex flex-col items-center gap-6"
+            >
+              <motion.img
+                whileHover={{ scale: 1.05 }}
+                src={`${import.meta.env.BASE_URL}img/Zarif.jpg`}
+                alt="Profile"
+                className="w-56 h-56 rounded-full border-4 border-border object-cover"
+              />
+
+              <div>
+                <h1 className="text-3xl font-bold text-primary">
+                  Zarif Amir Sanad
+                </h1>
+                <h2 className="text-secondary">Full-stack Developer</h2>
+              </div>
+
+              {/* SOCIAL ICONS */}
+              <div className="flex gap-6">
+                {[LinkedInIcon, GitHubIcon, WhatsAppIcon].map((Icon, i) => (
+                  <motion.a
+                    key={i}
+                    whileHover={{ y: -4, scale: 1.1 }}
+                    className="text-secondary hover:text-accent transition"
+                  >
+                    <Icon fontSize="large" />
+                  </motion.a>
+                ))}
+              </div>
+
+              {/* DOWNLOAD CV */}
+              <motion.a
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                href={`${import.meta.env.BASE_URL}files/Zarif_Amir_Sanad.pdf`}
+                download
+                className="mt-4 px-8 py-3 border-2 border-accent text-accent rounded-full font-semibold hover:bg-accent hover:text-black transition"
+              >
+                Download CV
+              </motion.a>
+            </motion.div>
+
+            <footer className="text-sm text-muted">
               © 2025 All rights reserved.
             </footer>
           </div>
         </div>
-      </aside>
+      </motion.aside>
 
-      <button
-        className="md:hidden fixed top-4 right-4 z-50 p-3 bg-cyan-500 rounded-full transition-transform duration-300"
+      {/* MOBILE TOGGLE */}
+      <motion.button
+        whileTap={{ scale: 0.9 }}
+        className="md:hidden fixed top-4 right-4 z-50 p-3 bg-accent rounded-full text-black"
         onClick={() => setIsOpen(!isOpen)}
       >
-        {isOpen ? (
-          <CloseIcon style={{ color: "white", fontSize: "24px" }} />
-        ) : (
-          <MenuIcon style={{ color: "white", fontSize: "24px" }} />
-        )}
-      </button>
+        {isOpen ? <CloseIcon /> : <MenuIcon />}
+      </motion.button>
 
-      {/* Mobile Sidebar Overlay */}
-      <div
-        className={`md:hidden fixed top-0 right-0 h-full w-64 bg-gray-800 text-gray-100 z-40 transform transition-transform duration-300 ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        <div className="flex flex-col items-center pt-16 px-4">
-          {/* Profile Section */}
-          <img
-            src="/img/Zarif.jpg"
-            alt="Profile"
-            className="h-24 w-24 rounded-full border-4 border-white"
-          />
-          <h1 className="text-2xl font-bold mt-4">Zarif Amir Sanad</h1>
-          <p className="text-gray-400 font-medium pb-8">Full-stack-Developer</p>
+      {/* MOBILE SIDEBAR */}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            <motion.div
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30"
+              onClick={() => setIsOpen(false)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            />
 
-          {/* Navigation Links */}
-          <nav className="flex flex-col items-center space-y-4 w-full">
-            {navLinks.map(({ href, label }) => {
-              const isActive = location === href;
-              return (
-                <Link
-                  key={href}
-                  href={href}
-                  className={`text-lg w-full text-center py-2 rounded transition ${
-                    isActive
-                      ? "text-cyan-400 font-bold"
-                      : "text-gray-300 hover:text-cyan-400"
-                  }`}
-                  onClick={() => setIsOpen(false)}
-                >
-                  {label}
+            <motion.div
+              className="fixed top-0 right-0 h-full w-64 bg-surface text-primary z-40 p-6"
+              variants={mobileVariants}
+              initial="hidden"
+              animate="show"
+              exit="exit"
+            >
+              <h1 className="text-2xl font-bold mb-6">Zarif Amir Sanad</h1>
+
+              {navLinks.map(({ href, label }) => (
+                <Link key={href} href={href} onClick={() => setIsOpen(false)}>
+                  <motion.div
+                    whileHover={{ x: 3 }}
+                    className={`py-3 text-lg border-b border-border transition-colors
+    ${
+      isActive(href)
+        ? "text-accent hover:opacity-80"
+        : "text-secondary hover:text-accent"
+    }
+  `}
+                  >
+                    {label}
+                  </motion.div>
                 </Link>
-              );
-            })}
-          </nav>
-
-          {/* Social Icons */}
-          <div className="flex space-x-6 mb-8 pt-24 pb-10 gap-2">
-            <a
-              href="https://www.linkedin.com/in/zarif-amir/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <LinkedInIcon
-                className="text-gray-300 hover:text-[#0a66c2]"
-                fontSize="large"
-              />
-            </a>
-            <a
-              href="https://github.com/Zarifur"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <GitHubIcon
-                className="text-gray-300 hover:text-black"
-                fontSize="large"
-              />
-            </a>
-            <a href="#" target="_blank" rel="noreferrer">
-              <WhatsAppIcon
-                className="text-gray-300 hover:text-green-600"
-                fontSize="large"
-              />
-            </a>
-          </div>
-          {/* Download CV button */}
-          <a
-            href="/files/Zarif_Amir_Sanad.pdf"
-            download="Zarif_Amir_Sanad_CV.pdf"
-            className="group inline-flex items-center justify-center gap-2 px-8 py-3 border-2 border-white text-white rounded-full transition-all duration-200 ease-out hover:bg-primary-500 hover:border-cyan-400 hover:text-cyan-400 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-primary-300 font-semibold"
-            aria-label="Download Zarif Amir Sanad's CV"
-          >
-            Download CV
-            <svg
-              className="w-5 h-5 transform transition-transform duration-200 group-hover:translate-y-1 group-hover:text-cyan-400"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M12 5v14m0 0l-5-5m5 5l5-5"
-              />
-            </svg>
-          </a>
-          {/* Footer */}
-          <footer className="text-sm text-gray-400 pt-48">
-            © 2025 All rights reserved.
-          </footer>
-        </div>
-      </div>
+              ))}
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </>
   );
 };

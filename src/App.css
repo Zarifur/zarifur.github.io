@@ -1,59 +1,179 @@
+/* ===============================
+   THEME VARIABLES
+   =============================== */
+
+:root,
+[data-theme="dark"] {
+  /* Backgrounds */
+  --bg-page: #121212;
+  --bg-surface: #1e1e1e;
+  --bg-surface-muted: #222222;
+
+  /* Text */
+  --text-primary: #ffffff;
+  --text-secondary: #9ca3af; /* gray-400 */
+  --text-muted: #6b7280; /* gray-500 */
+
+  /* Accent */
+  --accent: #22d3ee; /* cyan-400 */
+  --accent-soft: rgba(34, 211, 238, 0.2);
+
+  /* Borders */
+  --border: #374151; /* gray-600 */
+}
+
+/* Light theme */
+[data-theme="light"] {
+  --bg-page: #f9fafb;
+  --bg-surface: #ffffff;
+  --bg-surface-muted: #f3f4f6;
+
+  --text-primary: #111827;
+  --text-secondary: #374151;
+  --text-muted: #6b7280;
+
+  --accent: #2563eb;
+  --accent-soft: rgba(37, 99, 235, 0.15);
+
+  --border: #e5e7eb;
+}
+
 @import "tailwindcss";
 
-/* Change nprogress bar color to your primary color */
-#nprogress .bar {
-  background: #38bdf8; /* Tailwind's sky-400 or your primary color */
-}
-#nprogress .peg {
-  box-shadow: 0 0 10px #38bdf8, 0 0 5px #38bdf8;
-}
-#nprogress .spinner {
-  display: none; /* hide spinner if you want only the bar */
+/* ===============================
+   THEME UTILITIES (Explicit Tailwind Layer)
+   =============================== */
+
+@layer utilities {
+  /* Text colors */
+  .text-primary {
+    @apply text-[var(--text-primary)];
+  }
+  .text-secondary {
+    @apply text-[var(--text-secondary)];
+  }
+  .text-muted {
+    @apply text-[var(--text-muted)];
+  }
+  .text-accent {
+    @apply text-[var(--accent)];
+  }
+
+  /* Background colors */
+  .bg-page {
+    @apply bg-[var(--bg-page)];
+  }
+  .bg-surface {
+    @apply bg-[var(--bg-surface)];
+  }
+  .bg-surfaceMuted {
+    @apply bg-[var(--bg-surface-muted)];
+  }
+
+  /* Border colors */
+  .border-border {
+    @apply border-[var(--border)];
+  }
 }
 
-/* 1. Use a more-intuitive box-sizing model */
-*, *::before, *::after {
+/* ===============================
+   NPROGRESS (theme-aware)
+   /* =============================== */
+
+#nprogress .bar {
+  background: var(--accent);
+}
+
+#nprogress .peg {
+  box-shadow:
+    0 0 10px var(--accent),
+    0 0 5px var(--accent);
+}
+
+#nprogress .spinner {
+  display: none;
+}
+
+/* ===============================
+   CSS RESET / BASE
+   =============================== */
+
+/* 1. More intuitive box sizing */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
+
 /* 2. Remove default margin */
 * {
   margin: 0;
 }
+
 /* 3. Enable keyword animations */
 @media (prefers-reduced-motion: no-preference) {
   html {
     interpolate-size: allow-keywords;
   }
 }
+
 body {
-  /* 4. Add accessible line-height */
+  /* 4. Accessible line height */
   line-height: 1.5;
+
   /* 5. Improve text rendering */
   -webkit-font-smoothing: antialiased;
+
+  /* Theme bindings */
+  background-color: var(--bg-page);
+  color: var(--text-primary);
 }
-/* 6. Improve media defaults */
-img, picture, video, canvas, svg {
+
+/* 6. Media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
   display: block;
   max-width: 100%;
 }
+
 /* 7. Inherit fonts for form controls */
-input, button, textarea, select {
+input,
+button,
+textarea,
+select {
   font: inherit;
 }
+
 /* 8. Avoid text overflows */
-p, h1, h2, h3, h4, h5, h6 {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   overflow-wrap: break-word;
 }
-/* 9. Improve line wrapping */
+
+/* 9. Better text wrapping */
 p {
   text-wrap: pretty;
 }
-h1, h2, h3, h4, h5, h6 {
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   text-wrap: balance;
 }
-/*
-  10. Create a root stacking context
-*/
-#root, #__next {
+
+/* 10. Root stacking context */
+#root,
+#__next {
   isolation: isolate;
-}
+} */

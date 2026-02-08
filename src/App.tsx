@@ -18,10 +18,10 @@ function App() {
   // }, []);
 
   return (
-    <div className="bg-[#222222] text-gray-100 font-sans min-h-screen md:flex">
+    <div className="bg-page text-primary font-sans min-h-screen md:flex">
       <PageLoader /> {/* Loading bar component */}
       <Sidebar />
-      <main className="relative flex-1 w-full md:w-[70%] md:ml-[30%] h-screen overflow-y-auto bg-[#222222]">
+      <main className="relative flex-1 w-full md:w-[70%] md:ml-[30%] h-screen overflow-y-auto bg-page">
         <Switch>
           <Route path="/">
             <HomeSection />

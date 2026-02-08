@@ -137,18 +137,18 @@ const Resume = () => {
 
   return (
     <>
-      <div className="w-full px-4 py-8 md:px-8 md:py-12 ">
-        <h2 className="text-4xl font-bold pb-12 text-white">Resume</h2>
+      <div className="w-full px-4 py-8 md:px-8 md:py-12 bg-page text-primary">
+        <h2 className="text-4xl font-bold pb-12 text-primary">Resume</h2>
 
         {/* Experience */}
         <section className="relative pb-10 ">
-          <h3 className="text-3xl font-bold pb-8 text-white flex items-center gap-2">
+          <h3 className="text-3xl font-bold pb-8 text-primary flex items-center gap-2">
             Experience
-            <span className="w-4 h-1 bg-cyan-400 rounded-full" />
+            <span className="w-4 h-1 bg-accent rounded-full" />
           </h3>
 
           <div className="relative">
-            <div className="absolute top-0 bottom-0 left-[11.75rem] transform -translate-x-1/2 w-0.5 bg-gray-600" />
+            <div className="absolute top-0 bottom-0 left-[11.75rem] transform -translate-x-1/2 w-0.5 bg-border" />
             {experience.map((item, idx) => (
               <div key={idx} className="flex flex-row relative pb-5">
                 {/* Date & subtitle column */}
@@ -176,11 +176,11 @@ const Resume = () => {
 
                 {/* Content */}
                 <div className="flex-1 pl-3">
-                  <h4 className="text-lg font-bold pb-2 text-white">
+                  <h4 className="text-lg font-bold pb-2 text-primary">
                     {item.title}
                   </h4>
                   <motion.ul
-                    className="list-disc list-inside text-gray-400  text-base leading-relaxed space-y-1"
+                    className="list-disc list-inside text-secondary  text-base leading-relaxed space-y-1"
                     initial="hidden"
                     animate="visible"
                     variants={{
@@ -209,9 +209,9 @@ const Resume = () => {
         </section>
 
         <section className="relative pb-10 ">
-          <h3 className="text-3xl font-bold pb-8 text-white flex items-center gap-2">
+          <h3 className="text-3xl font-bold pb-8 text-primary flex items-center gap-2">
             Skills
-            <span className="w-4 h-1 bg-cyan-400 rounded-full" />
+            <span className="w-4 h-1 bg-accent rounded-full" />
           </h3>
 
           <div className="relative">
@@ -260,7 +260,7 @@ const Resume = () => {
                           visible: { opacity: 1, y: 0 },
                         }}
                         transition={{ duration: 0.4, ease: "easeOut" }}
-                        className="text-cyan-400 font-medium underline underline-offset-4 decoration-1"
+                        className="text-accent font-medium underline underline-offset-4 decoration-1"
                       >
                         {point}
                       </motion.span>
@@ -273,9 +273,9 @@ const Resume = () => {
         </section>
 
         <section className="pb-10">
-          <h3 className="text-3xl font-bold pb-8 text-white flex items-center gap-2">
+          <h3 className="text-3xl font-bold pb-8 text-primary flex items-center gap-2">
             Education
-            <span className="w-4 h-1 bg-cyan-400 rounded-full" />
+            <span className="w-4 h-1 bg-accent rounded-full" />
           </h3>
           <div className="relative">
             <div className="absolute top-0 bottom-0 left-[11.75rem] transform -translate-x-1/2 w-0.5 bg-gray-600" />
@@ -306,10 +306,10 @@ const Resume = () => {
 
                 {/* Content */}
                 <div className="flex-1 pl-3">
-                  <h4 className="text-lg font-bold pb-1 text-white">
+                  <h4 className="text-lg font-bold pb-1 text-primary">
                     {item.title}
                   </h4>
-                  <p className="text-gray-400 text-sm leading-relaxed">
+                  <p className="text-secondary text-sm leading-relaxed">
                     {item.description
                       .split(/(\[bold\].*?\[\/bold\])/g)
                       .map((part, idx) => {
@@ -321,7 +321,7 @@ const Resume = () => {
                             .replace("[bold]", "")
                             .replace("[/bold]", "");
                           return (
-                            <span key={idx} className="font-bold text-cyan-400">
+                            <span key={idx} className="font-bold text-accent">
                               {content}
                             </span>
                           );

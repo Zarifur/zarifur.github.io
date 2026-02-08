@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -12,6 +12,16 @@
     <title>Resume</title>
   </head>
   <body>
+    <script>
+      // Initialize theme before React renders to prevent flash
+      const theme = localStorage.getItem("theme") || "system";
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
+      const resolved =
+        theme === "system" ? (prefersDark ? "dark" : "light") : theme;
+      document.documentElement.setAttribute("data-theme", resolved);
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
