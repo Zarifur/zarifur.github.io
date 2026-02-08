@@ -1,7 +1,14 @@
 import { motion } from "framer-motion";
 
 
-function ExperienceCard({ exp, index }) {
+interface Experience {
+  date: string;
+  title: string;
+  subtitle: string;
+  points: string[];
+}
+
+function ExperienceCard({ exp, index }: { exp: Experience; index: number }) {
   return (
     <motion.article
       key={`${exp.title}-${index}`}
