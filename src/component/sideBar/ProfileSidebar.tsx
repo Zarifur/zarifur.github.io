@@ -61,7 +61,7 @@ const ProfileSidebar = () => {
         {/* NAME & TITLE */}
         <div>
           <h1 className="text-3xl font-bold text-primary">Zarif Amir Sanad</h1>
-          <h2 className="text-secondary">Full-stack Developer</h2>
+          <h2 className="text-secondary">DevOps & Full-stack Developer</h2>
         </div>
 
         {/* SOCIAL ICONS */}
