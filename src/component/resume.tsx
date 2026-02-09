@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 
-
 interface Experience {
   date: string;
   title: string;
@@ -19,7 +18,7 @@ function ExperienceCard({ exp, index }: { exp: Experience; index: number }) {
       className="
         rounded-2xl
         border border-border
-        bg-gradient-to-br from-black/40 to-black/20
+      
         p-6 md:p-8
         hover:border-accent/40 hover:shadow-xl
         transition
@@ -29,24 +28,30 @@ function ExperienceCard({ exp, index }: { exp: Experience; index: number }) {
       aria-labelledby={`exp-title-${index}`}
       role="article"
     >
-<div className="grid grid-cols-1 md:grid-cols-[1fr_auto] md:items-center gap-3 pb-4">
-  <div className="min-w-0">
-    <h4 id={`exp-title-${index}`} className="text-xl md:text-2xl font-bold text-primary">
-      {exp.title}
-    </h4>
-    <p className="text-secondary truncate">{exp.subtitle}</p>
-  </div>
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] md:items-center gap-3 pb-4">
+        <div className="min-w-0">
+          <h4
+            id={`exp-title-${index}`}
+            className="text-xl md:text-2xl font-bold text-primary"
+          >
+            {exp.title}
+          </h4>
+          <p className="text-secondary truncate">{exp.subtitle}</p>
+        </div>
 
-  <div className="flex items-center md:ml-6">
-    <span className="hidden md:inline-block w-px h-8 bg-border mr-4" aria-hidden="true" />
-    <time className="text-sm text-gray-400 whitespace-nowrap" dateTime={exp.date}>
-      {exp.date}
-    </time>
-  </div>
-</div>
-
-
-
+        <div className="flex items-center md:ml-6">
+          <span
+            className="hidden md:inline-block w-px h-8 bg-border mr-4"
+            aria-hidden="true"
+          />
+          <time
+            className="text-lg text-accent whitespace-nowrap"
+            dateTime={exp.date}
+          >
+            {exp.date}
+          </time>
+        </div>
+      </div>
 
       <ul
         className="list-disc list-inside space-y-2 text-secondary leading-relaxed"
@@ -60,7 +65,6 @@ function ExperienceCard({ exp, index }: { exp: Experience; index: number }) {
     </motion.article>
   );
 }
-
 
 const Resume = () => {
   const experience = [
@@ -139,19 +143,21 @@ const Resume = () => {
       </div>
 
       {/* EXPERIENCE */}
- <section className="py-8" aria-labelledby="experience-heading">
-      <h3 id="experience-heading" className="text-3xl font-bold flex items-center gap-2 pb-10 px-2">
-        Experience
-        <span className="w-4 h-1 bg-accent rounded-full" />
-      </h3>
+      <section className="py-8" aria-labelledby="experience-heading">
+        <h3
+          id="experience-heading"
+          className="text-3xl font-bold flex items-center gap-2 pb-10 px-2"
+        >
+          Experience
+          <span className="w-4 h-1 bg-accent rounded-full" />
+        </h3>
 
-      <div className="space-y-8 px-2">
-        {experience.map((exp, i) => (
-          <ExperienceCard key={`${exp.title}-${i}`} exp={exp} index={i} />
-        ))}
-      </div>
-    </section>
-
+        <div className="space-y-8 px-2">
+          {experience.map((exp, i) => (
+            <ExperienceCard key={`${exp.title}-${i}`} exp={exp} index={i} />
+          ))}
+        </div>
+      </section>
 
       {/* SKILLS */}
       <section className="py-8">
@@ -170,9 +176,7 @@ const Resume = () => {
               transition={{ duration: 0.4 }}
               className="border border-border rounded-xl p-6"
             >
-              <h4 className="font-semibold mb-4 text-accent">
-                {group.title}
-              </h4>
+              <h4 className="font-semibold mb-4 text-accent">{group.title}</h4>
 
               <div className="flex flex-wrap gap-3">
                 {group.items.map((item, idx) => (
