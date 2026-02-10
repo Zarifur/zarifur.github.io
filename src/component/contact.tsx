@@ -3,6 +3,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import emailjs from "@emailjs/browser";
 
 const ContactPage = () => {
   const [form, setForm] = useState({
@@ -16,6 +17,25 @@ const ContactPage = () => {
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
 
+  const showTempMessage = (
+    type: "success" | "error",
+    message: string,
+    duration = 5000, // 5 seconds
+  ) => {
+    if (type === "success") {
+      setSuccess(message);
+      setError("");
+    } else {
+      setError(message);
+      setSuccess("");
+    }
+
+    setTimeout(() => {
+      setSuccess("");
+      setError("");
+    }, duration);
+  };
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
@@ -28,19 +48,45 @@ const ContactPage = () => {
     setSuccess("");
     setError("");
 
+    const payload = {
+      from_name: form.name,
+      from_email: form.email,
+      subject: form.subject,
+      message: form.message,
+      to_email: "zarifsanad@gmail.com",
+    };
+
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/contact`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
+      // Auto-reply to USER
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID!,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_USER!,
+        payload,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY!,
+      );
 
-      if (!res.ok) throw new Error("Failed");
+      // Notification to YOU
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID!,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ADMIN!,
+        payload,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY!,
+      );
 
-      setSuccess("Message sent successfully! I’ll get back to you soon.");
+      showTempMessage(
+        "success",
+        "Message sent successfully! I’ll contact you soon.",
+        5000,
+      );
+
       setForm({ name: "", email: "", subject: "", message: "" });
-    } catch {
-      setError("Something went wrong. Please try again later.");
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      showTempMessage(
+        "error",
+        "Failed to send message. Please try again.",
+        5000,
+      );
     } finally {
       setLoading(false);
     }
@@ -77,7 +123,7 @@ const ContactPage = () => {
             loading="lazy"
             allowFullScreen
             referrerPolicy="no-referrer-when-downgrade"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.6767051051027!2d90.3855576!3d23.8769581"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.6767051051027!2d90.3855576!3d23.8769581!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c41236d2a3f3%3A0xb875079410f38d0d!2sHOUSE%20%23%2072%20Rd%20No%2015%2C%20Dhaka%201230!5e0!3m2!1sen!2sbd"
           />
         </div>
 
@@ -133,12 +179,12 @@ const ContactPage = () => {
               focus:outline-none focus:ring-2 focus:ring-accent col-span-2"
             />
 
-            {/* Fake CAPTCHA */}
+            {/* Fake CAPTCHA
             <div className="bg-surfaceMuted border border-border p-4 rounded col-span-2 flex items-center gap-4">
               <input type="checkbox" required className="w-5 h-5" />
               <span className="text-secondary">I'm not a robot</span>
               <span className="ml-auto text-muted text-xs">reCAPTCHA</span>
-            </div>
+            </div> */}
 
             <button
               type="submit"
