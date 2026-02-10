@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Redirecting…</title>
+
+    <!-- Redirect GitHub Pages 404s to index.html -->
+    <script>
+      // Repo name (must match Vite + Wouter base)
+      var repo = "/";
+
+      var pathname = window.location.pathname;
+
+      // Prevent infinite redirect loop
+      if (!pathname.startsWith(repo)) {
+        window.location.replace(repo + "/");
+      } else {
+        window.location.replace(repo + "/index.html");
+      }
+    </script>
+  </head>
+
+  <body>
+    <noscript> JavaScript is required to run this application. </noscript>
+  </body>
+</html>
