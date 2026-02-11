@@ -5,10 +5,10 @@ import HomeSection from "./component/home";
 import AboutMe from "./component/aboutMe";
 import Resume from "./component/resume";
 import ContactPage from "./component/contact";
-
+import { useHashLocation } from "wouter/use-hash-location";
 function App() {
   return (
-    <Router base="/">
+    <Router base="/" hook={useHashLocation}>
       <div className="bg-page text-primary font-sans h-screen flex overflow-hidden">
         <PageLoader />
         <Sidebar />
