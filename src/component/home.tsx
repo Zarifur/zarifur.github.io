@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "wouter";
 
 const HomeSection = () => {
   return (
@@ -53,8 +54,8 @@ const HomeSection = () => {
         transition={{ delay: 0.65 }}
         className="flex flex-col sm:flex-row gap-4"
       >
-        <a
-          href="/#/resume"
+        <Link
+          to="/resume"
           className="
             px-8 py-3 rounded-full
             bg-accent text-black
@@ -64,10 +65,10 @@ const HomeSection = () => {
           "
         >
           View Resume
-        </a>
+        </Link>
 
-        <a
-          href="/#/contact"
+        <Link
+          to="/contact"
           className="
             px-8 py-3 rounded-full
             border-2 border-accent
@@ -78,7 +79,7 @@ const HomeSection = () => {
           "
         >
           Contact Me
-        </a>
+        </Link>
       </motion.div>
     </motion.section>
   );
