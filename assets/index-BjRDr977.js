@@ -76,13 +76,13 @@ export default theme;`}function Kf(n={},...a){const{breakpoints:s,mixins:l={},sp
         text-center
         px-6
         bg-page
-      `,children:[M.jsx(Lt.h1,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{delay:.2},className:"text-4xl md:text-6xl font-extrabold text-primary mb-4",children:"Zarif Amir Sanad"}),M.jsx(Lt.h2,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{delay:.35},className:"text-xl md:text-2xl text-secondary mb-6",children:"DevOps & Full-stack Developer"}),M.jsx(Lt.p,{initial:{opacity:0},animate:{opacity:1},transition:{delay:.5},className:"max-w-2xl text-muted text-base md:text-lg mb-10",children:"I build scalable web applications, clean APIs, and thoughtful user experiences — from backend architecture to polished frontend interfaces."}),M.jsxs(Lt.div,{initial:{opacity:0,y:10},animate:{opacity:1,y:0},transition:{delay:.65},className:"flex flex-col sm:flex-row gap-4",children:[M.jsx("a",{href:"/resume",className:`
+      `,children:[M.jsx(Lt.h1,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{delay:.2},className:"text-4xl md:text-6xl font-extrabold text-primary mb-4",children:"Zarif Amir Sanad"}),M.jsx(Lt.h2,{initial:{opacity:0,y:20},animate:{opacity:1,y:0},transition:{delay:.35},className:"text-xl md:text-2xl text-secondary mb-6",children:"DevOps & Full-stack Developer"}),M.jsx(Lt.p,{initial:{opacity:0},animate:{opacity:1},transition:{delay:.5},className:"max-w-2xl text-muted text-base md:text-lg mb-10",children:"I build scalable web applications, clean APIs, and thoughtful user experiences — from backend architecture to polished frontend interfaces."}),M.jsxs(Lt.div,{initial:{opacity:0,y:10},animate:{opacity:1,y:0},transition:{delay:.65},className:"flex flex-col sm:flex-row gap-4",children:[M.jsx("a",{href:"/#/resume",className:`
             px-8 py-3 rounded-full
             bg-accent text-black
             font-semibold
             hover:opacity-90
             transition
-          `,children:"View Resume"}),M.jsx("a",{href:"/contact",className:`
+          `,children:"View Resume"}),M.jsx("a",{href:"/#/contact",className:`
             px-8 py-3 rounded-full
             border-2 border-accent
             text-accent
