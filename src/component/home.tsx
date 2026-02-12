@@ -54,7 +54,7 @@ const HomeSection = () => {
         className="flex flex-col sm:flex-row gap-4"
       >
         <a
-          href="/resume"
+          href="/#/resume"
           className="
             px-8 py-3 rounded-full
             bg-accent text-black
@@ -67,7 +67,7 @@ const HomeSection = () => {
         </a>
 
         <a
-          href="/contact"
+          href="/#/contact"
           className="
             px-8 py-3 rounded-full
             border-2 border-accent
