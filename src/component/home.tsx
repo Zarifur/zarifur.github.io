@@ -58,7 +58,7 @@ const HomeSection = () => {
           to="/resume"
           className="
             px-8 py-3 rounded-full
-            bg-accent text-black
+            bg-accent
             font-semibold
             hover:opacity-90
             transition

@@ -83,6 +83,26 @@ const MobileSidebar = ({ location, onClose }: Props) => {
           <span className="font-medium">Theme</span>
         </button>
 
+        <motion.a
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          href={`${import.meta.env.BASE_URL}files/Zarif_Amir_Sanad.pdf`}
+          target="_blank"
+          rel="noopener noreferrer"
+          download
+          className="
+    mt-4 flex items-center justify-center w-full px-8 py-3
+    border-2 border-accent
+    text-accent
+    rounded-full
+    font-semibold
+    hover:bg-accent hover:text-white
+    transition-colors
+  "
+        >
+          Download CV
+        </motion.a>
+
         {showThemeMenu && (
           <div className="mt-2 rounded-lg overflow-hidden border border-border">
             {(["light", "dark", "system"] as const).map((t) => (
